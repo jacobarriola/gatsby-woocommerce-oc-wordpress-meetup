@@ -1,7 +1,12 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
+import React from 'react'
+import { ApolloProvider } from '@apollo/client'
+import { client } from './src/components/apolloClient'
+import { AppProvider } from './src/components/context'
 
-// You can delete this file if you're not using it
+export function wrapRootElement({ element }) {
+  return (
+    <ApolloProvider client={client}>
+      <AppProvider>{element}</AppProvider>
+    </ApolloProvider>
+  )
+}

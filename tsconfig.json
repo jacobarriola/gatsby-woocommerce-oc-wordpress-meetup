@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "noUnusedLocals": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "exclude": ["node_modules", "public", ".cache"]
+}
