@@ -9,11 +9,10 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   flags: {
-    QUERY_ON_DEMAND: true,
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
     PRESERVE_WEBPACK_CACHE: true,
-    LAZY_IMAGES: true,
     FAST_REFRESH: true,
+    DEV_SSR: true,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
