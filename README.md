@@ -1,4 +1,4 @@
-This is a basic demo Gatsby + WooCommerce application used during the Orange County WordPress meet up.
+This is a basic demo Gatsby + WooCommerce application used during the Orange County WordPress Meetup.
 
 ## Get started
 
