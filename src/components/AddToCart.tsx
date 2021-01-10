@@ -1,6 +1,7 @@
 import { useMutation, gql } from '@apollo/client'
 import { Button, useToast } from '@chakra-ui/react'
 import React from 'react'
+import { Cart } from '../../types/Cart'
 import { useAppState } from './context'
 
 const AddToCart: React.FC<{ productId: number }> = ({ productId }) => {
