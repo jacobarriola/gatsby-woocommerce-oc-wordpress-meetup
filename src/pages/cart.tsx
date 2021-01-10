@@ -7,64 +7,19 @@ import { Cart as CartType } from '../../types/Cart'
 import { Link as GatsbyLink } from 'gatsby'
 
 const Cart: React.FC = () => {
-  const { cart, setCart } = useAppState()
-  const [maybeGetCart, { loading }] = useLazyQuery<CartQuery>(CART, {
-    onCompleted: ({ cart }) => {
-      setCart(cart)
-    },
-  })
+  // context
 
-  const [removeAllItems, { loading: loadingMutation }] = useMutation(REMOVE, {
-    onCompleted() {
-      setCart(undefined)
-    },
-    update(cache) {
-      cache.writeQuery({
-        query: CART,
-        data: undefined,
-      })
-    },
-  })
+  // lazy query - maybeGetCart
 
-  useEffect(() => {
-    if (cart) {
-      return
-    }
+  // remove all items mutation
 
-    maybeGetCart()
-  }, [cart, maybeGetCart])
+  // useEffect maybe
 
-  if (loading) {
-    return (
-      <Layout>
-        <Box>Loading cart...</Box>
-      </Layout>
-    )
-  }
+  // loading...
 
-  if (loadingMutation) {
-    return (
-      <Layout>
-        <Box>Updating cart...</Box>
-      </Layout>
-    )
-  }
+  // updating...
 
-  if (!cart) {
-    return (
-      <Layout>
-        <Text>Empty cart</Text>
-      </Layout>
-    )
-  }
-
-  if (cart?.contents.itemCount === 0) {
-    return (
-      <Layout>
-        <Text>Empty cart</Text>
-      </Layout>
-    )
-  }
+  // if !cart || cart?.contents.itemCount === 0 return 'empty'
 
   return (
     <Layout>
@@ -72,34 +27,18 @@ const Cart: React.FC = () => {
         Cart
       </Heading>
       <Heading size="md">Items</Heading>
-      {cart?.contents.nodes.map(item => {
-        const { node } = item.product
-        return <Box key={node.databaseId}>{node.name}</Box>
-      })}
+      <Box>Placeholder</Box>
       <Box my={6}>
         <Heading size="md">Summary</Heading>
-        <Box>Subtotal: {cart.subtotal}</Box>
-        <Box>Shipping: {cart.shippingTotal}</Box>
-        <Box>Total: {cart.total}</Box>
+        <Box>Subtotal: TBD</Box>
+        <Box>Shipping: TBD</Box>
+        <Box>Total: TBD</Box>
       </Box>
       <ButtonGroup spacing={4}>
         <Button as={GatsbyLink} to="/checkout" colorScheme="pink">
           Checkout
         </Button>
-        <Button
-          onClick={() =>
-            removeAllItems({
-              variables: {
-                input: {
-                  clientMutationId: `1234`,
-                  all: true,
-                },
-              },
-            })
-          }
-        >
-          Remove all
-        </Button>
+        <Button>Remove all</Button>
       </ButtonGroup>
     </Layout>
   )

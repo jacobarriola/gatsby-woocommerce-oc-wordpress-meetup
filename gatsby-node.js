@@ -1,3 +1,4 @@
+// Create product pages
 exports.createPages = async function ({ actions, graphql, reporter }) {
   const { data } = await graphql(`
     query {

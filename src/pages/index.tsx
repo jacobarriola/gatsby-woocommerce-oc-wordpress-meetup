@@ -1,21 +1,16 @@
 import React from 'react'
 import { graphql, Link, PageProps } from 'gatsby'
+import { Box, Heading } from '@chakra-ui/react'
+
 import Layout from '../components/Layout'
 
 const Index: React.FC<IndexProps> = ({ data }) => {
-  const {
-    wp: {
-      products: { nodes: products },
-    },
-  } = data
-
   return (
     <Layout>
-      {products.map(product => (
-        <div key={product.id}>
-          <Link to={`/product/${product.slug}`}>{product.name}</Link>
-        </div>
-      ))}
+      <Heading as="h1" mb={10}>
+        Home
+      </Heading>
+      <Box>Placeholder...</Box>
     </Layout>
   )
 }
@@ -29,19 +24,5 @@ type IndexProps = PageProps & {
     }
   }
 }
-
-export const query = graphql`
-  query AllProducts {
-    wp {
-      products(first: 3) {
-        nodes {
-          name
-          id
-          slug
-        }
-      }
-    }
-  }
-`
 
 export default Index

@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { gql, useMutation } from '@apollo/client'
 import { Source } from '@stripe/stripe-js'
 import { navigate } from 'gatsby'
-import { Button, toast, useToast } from '@chakra-ui/react'
+import { Button, useToast } from '@chakra-ui/react'
 import { useAppState } from './context'
 import { Order } from '../../types/Order'
 
