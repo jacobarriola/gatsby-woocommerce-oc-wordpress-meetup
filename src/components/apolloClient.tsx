@@ -7,14 +7,6 @@ import {
   from,
 } from '@apollo/client'
 
-// import {
-//   getAuthToken,
-//   getRefreshToken,
-//   setAuthToken,
-//   isTokenExpired,
-//   localLogOut,
-// } from '../utils/auth'
-
 const url = process.env.GATSBY_API_URL
 
 const httpLink = new HttpLink({
@@ -64,9 +56,6 @@ export const wooSessionAfterware = new ApolloLink((operation, forward) => {
   }
 
   return forward(operation).map(response => {
-    /**
-     * Check for session header and update session in local storage accordingly.
-     */
     const context = operation.getContext()
 
     const {
@@ -75,14 +64,18 @@ export const wooSessionAfterware = new ApolloLink((operation, forward) => {
 
     const session = headers.get('woocommerce-session')
 
-    if (session) {
-      if (window.localStorage.getItem('woo-session') !== session) {
-        window.localStorage.setItem(
-          'woo-session',
-          headers.get('woocommerce-session')
-        )
-      }
+    // Bail if no session was sent
+    if (!session) {
+      return response
     }
+
+    // Bail if we already have the session
+    if (window.localStorage.getItem('woo-session') === session) {
+      return response
+    }
+
+    // Set WC session to localStorage
+    window.localStorage.setItem('woo-session', session)
 
     return response
   })
