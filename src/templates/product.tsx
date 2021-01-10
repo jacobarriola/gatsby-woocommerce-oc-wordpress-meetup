@@ -5,6 +5,7 @@ import { graphql, PageProps } from 'gatsby'
 // Internal dependencies
 import Layout from '../components/Layout'
 import { Product as ProductType } from '../../types/Product'
+import AddToCart from '../components/AddToCart'
 
 const Product: React.FC<ProductProps> = ({ data }) => {
   return (
