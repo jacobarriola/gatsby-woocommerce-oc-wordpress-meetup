@@ -6,7 +6,7 @@ import { Heading } from '@chakra-ui/react'
 import CheckoutForm from '../../components/CheckoutForm'
 
 const stripePromise = loadStripe(
-  'pk_test_51I4VSyL2t1PuiY3s0VmhCOmJpPTN2CBXxcCBovLDsXCQ3ljN5qAhXeXTuc5vXRWtKg6xAJZqrUP09MUFCp0HlnkL00VpO69eu4'
+  process.env.GATSBY_STRIPE_KEY
 )
 
 const Checkout: React.FC = () => {
